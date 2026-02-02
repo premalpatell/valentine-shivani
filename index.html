@@ -148,22 +148,15 @@
 
   <div id="song" class="section">
     <h3>A Song for You &#x1F498;</h3>
-    <p class="small">Note: Most browsers only autoplay if the video is muted. If it doesn’t play automatically, tap the play button.</p>
+    <p class="small">Tap play if it doesn’t start automatically (some browsers block autoplay until you tap once).</p>
 
-    <!-- Tum Se Hi (starts at 29 seconds) -->
-    <div class="videoWrap">
-      <iframe
-        id="yt"
-        src="https://www.youtube.com/embed/mt9xg0mmt28?start=29&autoplay=1&mute=1&controls=1&rel=0"
-        title="Tum Se Hi"
-        allow="autoplay; encrypted-media; picture-in-picture"
-        allowfullscreen
-      ></iframe>
+    <div class="card" style="width:min(760px,95%);">
+      <audio id="songAudio" controls preload="auto" style="width:100%">
+        <source src="tum-se-hi.mp3" type="audio/mpeg" />
+        Your browser does not support the audio element.
+      </audio>
+      <p class="small" style="margin:10px 0 0">Starts at 0:29.</p>
     </div>
-
-    <p style="margin-top:14px">
-      <a href="https://youtu.be/mt9xg0mmt28?t=29" target="_blank">Open song on YouTube</a>
-    </p>
   </div>
 
   <script>
@@ -212,6 +205,12 @@
       document.getElementById("question").style.display="none";
       document.getElementById("gifts").style.display="block";
       confettiBurst();
+
+      // prepare audio for later play (user gesture makes it autoplay-friendly)
+      const a = document.getElementById('songAudio');
+      if(a){
+        try{ a.currentTime = 29; }catch(e){}
+      }
     };
 
     // Show sections
@@ -219,11 +218,14 @@
       document.querySelectorAll(".section").forEach(s=>s.style.display="none");
       document.getElementById(id).style.display="block";
 
-      // If opening song section, force reload iframe to attempt autoplay again
+      // If opening song section, try to autoplay the MP3 from 0:29
       if(id==="song"){
-        const yt=document.getElementById('yt');
-        const src=yt.getAttribute('src');
-        yt.setAttribute('src', src);
+        const a = document.getElementById('songAudio');
+        if(a){
+          try{ a.currentTime = 29; }catch(e){}
+          const p = a.play();
+          if(p && typeof p.catch === 'function') p.catch(()=>{});
+        }
       }
     }
 
