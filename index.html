@@ -4,36 +4,51 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>For Shivani ❤️</title>
-<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 
 <style>
+:root{
+  --pink:#ff4f8b;
+  --bg1:#ffd6e8;
+  --bg2:#ffeaf3;
+  --text:#4a2a3a;
+}
+*{box-sizing:border-box}
 body{
   margin:0;
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg,#ffd6e8,#ffeaf3);
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: radial-gradient(1200px 700px at 20% 10%, #fff 0%, transparent 55%),
+              linear-gradient(135deg,var(--bg1),var(--bg2));
   overflow-x:hidden;
-  color:#4a2a3a;
+  color:var(--text);
   text-align:center;
 }
-h1{color:#ff4f8b}
+
+h1{color:var(--pink); margin:32px 12px 8px; letter-spacing:.3px}
+
+p{margin:6px 12px 18px}
+
 button{
   padding:14px 22px;
   border-radius:14px;
   border:0;
-  font-weight:700;
+  font-weight:800;
   cursor:pointer;
   margin:8px;
-  transition:.2s;
+  transition:transform .15s ease, filter .15s ease;
 }
-.yes{background:#ff4f8b;color:white}
+button:hover{transform:translateY(-1px); filter:brightness(1.02)}
+.yes{background:var(--pink);color:white; box-shadow:0 10px 20px rgba(255,79,139,.25)}
 .no{background:#eee}
-.section{display:none;padding:20px}
+
+.section{display:none; padding:20px; animation:fadeIn .25s ease}
+@keyframes fadeIn{from{opacity:0; transform:translateY(6px)} to{opacity:1; transform:translateY(0)}}
+
 .card{
   background:white;
   border-radius:20px;
   padding:20px;
   margin:15px auto;
-  width:min(700px,95%);
+  width:min(760px,95%);
   box-shadow:0 20px 40px rgba(0,0,0,.15);
 }
 
@@ -41,30 +56,58 @@ button{
 .heart{
   position:fixed;
   width:16px;height:16px;
-  background:#ff4f8b;
+  background:var(--pink);
   transform:rotate(45deg);
   animation:float 10s linear infinite;
-  opacity:.3;
+  opacity:.22;
 }
 .heart:before,.heart:after{
   content:"";
   position:absolute;
   width:16px;height:16px;
   border-radius:50%;
-  background:#ff4f8b;
+  background:var(--pink);
 }
 .heart:before{left:-8px}
 .heart:after{top:-8px}
 @keyframes float{
-  from{transform:translateY(100vh) rotate(45deg)}
-  to{transform:translateY(-120vh) rotate(45deg)}
+  from{transform:translateY(110vh) rotate(45deg)}
+  to{transform:translateY(-140vh) rotate(45deg)}
 }
 
 /* Confetti */
 canvas{position:fixed;top:0;left:0;pointer-events:none}
 
-gift{background:#fff0f6;padding:14px;border-radius:14px;margin:10px;cursor:pointer}
-.gift{background:#fff0f6;padding:14px;border-radius:14px;margin:10px;cursor:pointer}
+.giftsGrid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:12px;
+  width:min(760px,95%);
+  margin:0 auto;
+}
+.gift{
+  background:#fff0f6;
+  padding:14px;
+  border-radius:16px;
+  cursor:pointer;
+  box-shadow:0 10px 20px rgba(255,79,139,.12);
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+.gift:hover{transform:translateY(-2px); box-shadow:0 16px 28px rgba(255,79,139,.18)}
+
+/* YouTube embed */
+.videoWrap{
+  width:min(760px,95%);
+  margin:0 auto;
+  aspect-ratio:16/9;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 18px 36px rgba(0,0,0,.18);
+}
+.videoWrap iframe{width:100%; height:100%; border:0}
+
+.small{font-size:.95rem; opacity:.85}
+
 </style>
 </head>
 
@@ -83,9 +126,11 @@ gift{background:#fff0f6;padding:14px;border-radius:14px;margin:10px;cursor:point
 
 <div id="gifts" class="section">
   <h2>Yay, you said yes! 🎉</h2>
-  <div class="gift" onclick="show('note')">Gift 1 — Love Note</div>
-  <div class="gift" onclick="show('letter')">Gift 2 — Words from my Heart</div>
-  <div class="gift" onclick="show('qr')">Gift 3 — A Song for You</div>
+  <div class="giftsGrid">
+    <div class="gift" onclick="show('note')">Gift 1 — Love Note</div>
+    <div class="gift" onclick="show('letter')">Gift 2 — Words from my Heart</div>
+    <div class="gift" onclick="show('song')">Gift 3 — A Song for You</div>
+  </div>
 </div>
 
 <div id="note" class="section card">
@@ -104,19 +149,37 @@ gift{background:#fff0f6;padding:14px;border-radius:14px;margin:10px;cursor:point
   <p>Always, forever — Premal</p>
 </div>
 
-<div id="qr" class="section card">
-  <h3>Scan for a song 💘</h3>
-  <div id="qrcode"></div>
-  <p><a href="https://music.youtube.com/watch?v=CnEqrgMlWLQ&si=pp8bvPsDZM8V7Ac_" target="_blank">Open song</a></p>
+<div id="song" class="section">
+  <h3>A Song for You 💘</h3>
+  <p class="small">Note: Most browsers only autoplay if the video is muted. If it doesn’t play automatically, tap the play button.</p>
+
+  <!-- Plays the YouTube video starting at 29 seconds -->
+  <div class="videoWrap">
+    <iframe
+      id="yt"
+      src="https://www.youtube.com/embed/CnEqrgMlWLQ?start=29&autoplay=1&mute=1&controls=1&rel=0"
+      title="A song for you"
+      allow="autoplay; encrypted-media; picture-in-picture"
+      allowfullscreen
+    ></iframe>
+  </div>
+
+  <p style="margin-top:14px">
+    <a href="https://music.youtube.com/watch?v=CnEqrgMlWLQ&si=pp8bvPsDZM8V7Ac_" target="_blank">Open song in YouTube Music</a>
+  </p>
 </div>
 
 <script>
 // Floating hearts
-for(let i=0;i<20;i++){
+for(let i=0;i<26;i++){
   const h=document.createElement("div");
   h.className="heart";
+  const s=10+Math.random()*18;
+  h.style.width=s+"px";
+  h.style.height=s+"px";
   h.style.left=Math.random()*100+"vw";
   h.style.animationDuration=(6+Math.random()*6)+"s";
+  h.style.opacity=(.12+Math.random()*.18);
   document.body.appendChild(h);
 }
 
@@ -124,8 +187,8 @@ for(let i=0;i<20;i++){
 const noBtn=document.getElementById("noBtn");
 noBtn.onmouseover=()=>{
   noBtn.style.position="relative";
-  noBtn.style.left=(Math.random()*200-100)+"px";
-  noBtn.style.top=(Math.random()*100-50)+"px";
+  noBtn.style.left=(Math.random()*240-120)+"px";
+  noBtn.style.top=(Math.random()*120-60)+"px";
 };
 
 // Yes button
@@ -139,12 +202,12 @@ document.getElementById("yesBtn").onclick=()=>{
 function show(id){
   document.querySelectorAll(".section").forEach(s=>s.style.display="none");
   document.getElementById(id).style.display="block";
-  if(id==="qr"){
-    document.getElementById("qrcode").innerHTML="";
-    new QRCode(document.getElementById("qrcode"),{
-      text:"https://music.youtube.com/watch?v=CnEqrgMlWLQ&si=pp8bvPsDZM8V7Ac_",
-      width:180,height:180
-    });
+
+  // If opening song section, force reload iframe to attempt autoplay again
+  if(id==="song"){
+    const yt=document.getElementById('yt');
+    const src=yt.getAttribute('src');
+    yt.setAttribute('src', src);
   }
 }
 
@@ -153,28 +216,33 @@ const canvas=document.getElementById("confetti");
 const ctx=canvas.getContext("2d");
 canvas.width=innerWidth;
 canvas.height=innerHeight;
+addEventListener('resize',()=>{canvas.width=innerWidth; canvas.height=innerHeight;});
 let confetti=[];
 function confettiBurst(){
-  for(let i=0;i<200;i++){
+  confetti=[];
+  for(let i=0;i<220;i++){
     confetti.push({
       x:Math.random()*canvas.width,
       y:-20,
       r:4,
-      d:Math.random()*50,
-      color:`hsl(${Math.random()*360},100%,70%)`,
-      tilt:Math.random()*10-10
+      vy: 1.5 + Math.random()*2.5,
+      vx: -1 + Math.random()*2,
+      color:`hsl(${Math.random()*360},100%,70%)`
     });
   }
   requestAnimationFrame(drawConfetti);
+  // auto-stop after 2.5s
+  setTimeout(()=>{confetti=[];}, 2500);
 }
 function drawConfetti(){
   ctx.clearRect(0,0,canvas.width,canvas.height);
   confetti.forEach(c=>{
-    c.y+=2;
-    ctx.beginPath();
+    c.x+=c.vx;
+    c.y+=c.vy;
     ctx.fillStyle=c.color;
     ctx.fillRect(c.x,c.y,c.r,c.r);
   });
+  if(confetti.length) requestAnimationFrame(drawConfetti);
 }
 </script>
 
