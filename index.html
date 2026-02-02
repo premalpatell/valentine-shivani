@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>For Shivani ❤️</title>
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+
+<style>
+body{
+  margin:0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg,#ffd6e8,#ffeaf3);
+  overflow-x:hidden;
+  color:#4a2a3a;
+  text-align:center;
+}
+h1{color:#ff4f8b}
+button{
+  padding:14px 22px;
+  border-radius:14px;
+  border:0;
+  font-weight:700;
+  cursor:pointer;
+  margin:8px;
+  transition:.2s;
+}
+.yes{background:#ff4f8b;color:white}
+.no{background:#eee}
+.section{display:none;padding:20px}
+.card{
+  background:white;
+  border-radius:20px;
+  padding:20px;
+  margin:15px auto;
+  width:min(700px,95%);
+  box-shadow:0 20px 40px rgba(0,0,0,.15);
+}
+
+/* Floating hearts */
+.heart{
+  position:fixed;
+  width:16px;height:16px;
+  background:#ff4f8b;
+  transform:rotate(45deg);
+  animation:float 10s linear infinite;
+  opacity:.3;
+}
+.heart:before,.heart:after{
+  content:"";
+  position:absolute;
+  width:16px;height:16px;
+  border-radius:50%;
+  background:#ff4f8b;
+}
+.heart:before{left:-8px}
+.heart:after{top:-8px}
+@keyframes float{
+  from{transform:translateY(100vh) rotate(45deg)}
+  to{transform:translateY(-120vh) rotate(45deg)}
+}
+
+/* Confetti */
+canvas{position:fixed;top:0;left:0;pointer-events:none}
+
+gift{background:#fff0f6;padding:14px;border-radius:14px;margin:10px;cursor:pointer}
+.gift{background:#fff0f6;padding:14px;border-radius:14px;margin:10px;cursor:pointer}
+</style>
+</head>
+
+<body>
+
+<canvas id="confetti"></canvas>
+
+<h1>Hey Shivani 💗</h1>
+<p>Open at your own risk 😌</p>
+
+<div id="question">
+  <h2>Will you be my Valentine?</h2>
+  <button class="yes" id="yesBtn">YES OF COURSE</button>
+  <button class="no" id="noBtn">NO THANK YOU</button>
+</div>
+
+<div id="gifts" class="section">
+  <h2>Yay, you said yes! 🎉</h2>
+  <div class="gift" onclick="show('note')">Gift 1 — Love Note</div>
+  <div class="gift" onclick="show('letter')">Gift 2 — Words from my Heart</div>
+  <div class="gift" onclick="show('qr')">Gift 3 — A Song for You</div>
+</div>
+
+<div id="note" class="section card">
+  <h3>💐 For Shivani</h3>
+  <p>I love you no matter what.</p>
+  <p>You are the best part of my life.</p>
+  <p>I can’t imagine my life without you.</p>
+  <p>— Premal</p>
+</div>
+
+<div id="letter" class="section card">
+  <h3>Words from my Heart</h3>
+  <p>You make my life so meaningful and I’m so lucky to have you.</p>
+  <p>I love you wholeheartedly and I can’t wait to love you forever.</p>
+  <p>You are literally the most beautiful person I know.</p>
+  <p>Always, forever — Premal</p>
+</div>
+
+<div id="qr" class="section card">
+  <h3>Scan for a song 💘</h3>
+  <div id="qrcode"></div>
+  <p><a href="https://music.youtube.com/watch?v=CnEqrgMlWLQ&si=pp8bvPsDZM8V7Ac_" target="_blank">Open song</a></p>
+</div>
+
+<script>
+// Floating hearts
+for(let i=0;i<20;i++){
+  const h=document.createElement("div");
+  h.className="heart";
+  h.style.left=Math.random()*100+"vw";
+  h.style.animationDuration=(6+Math.random()*6)+"s";
+  document.body.appendChild(h);
+}
+
+// No button runs away
+const noBtn=document.getElementById("noBtn");
+noBtn.onmouseover=()=>{
+  noBtn.style.position="relative";
+  noBtn.style.left=(Math.random()*200-100)+"px";
+  noBtn.style.top=(Math.random()*100-50)+"px";
+};
+
+// Yes button
+document.getElementById("yesBtn").onclick=()=>{
+  document.getElementById("question").style.display="none";
+  document.getElementById("gifts").style.display="block";
+  confettiBurst();
+};
+
+// Show sections
+function show(id){
+  document.querySelectorAll(".section").forEach(s=>s.style.display="none");
+  document.getElementById(id).style.display="block";
+  if(id==="qr"){
+    document.getElementById("qrcode").innerHTML="";
+    new QRCode(document.getElementById("qrcode"),{
+      text:"https://music.youtube.com/watch?v=CnEqrgMlWLQ&si=pp8bvPsDZM8V7Ac_",
+      width:180,height:180
+    });
+  }
+}
+
+// Confetti
+const canvas=document.getElementById("confetti");
+const ctx=canvas.getContext("2d");
+canvas.width=innerWidth;
+canvas.height=innerHeight;
+let confetti=[];
+function confettiBurst(){
+  for(let i=0;i<200;i++){
+    confetti.push({
+      x:Math.random()*canvas.width,
+      y:-20,
+      r:4,
+      d:Math.random()*50,
+      color:`hsl(${Math.random()*360},100%,70%)`,
+      tilt:Math.random()*10-10
+    });
+  }
+  requestAnimationFrame(drawConfetti);
+}
+function drawConfetti(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  confetti.forEach(c=>{
+    c.y+=2;
+    ctx.beginPath();
+    ctx.fillStyle=c.color;
+    ctx.fillRect(c.x,c.y,c.r,c.r);
+  });
+}
+</script>
+
+</body>
+</html>
