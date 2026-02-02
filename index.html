@@ -1,250 +1,266 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>For Shivani ❤️</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>For Shivani &#x2764;&#xFE0F;</title>
 
-<style>
-:root{
-  --pink:#ff4f8b;
-  --bg1:#ffd6e8;
-  --bg2:#ffeaf3;
-  --text:#4a2a3a;
-}
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-  background: radial-gradient(1200px 700px at 20% 10%, #fff 0%, transparent 55%),
-              linear-gradient(135deg,var(--bg1),var(--bg2));
-  overflow-x:hidden;
-  color:var(--text);
-  text-align:center;
-}
+  <style>
+    :root{
+      --pink:#ff4f8b;
+      --bg1:#ffd6e8;
+      --bg2:#ffeaf3;
+      --text:#4a2a3a;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: radial-gradient(1200px 700px at 20% 10%, #fff 0%, transparent 55%),
+                  linear-gradient(135deg,var(--bg1),var(--bg2));
+      overflow-x:hidden;
+      color:var(--text);
+      text-align:center;
+    }
 
-h1{color:var(--pink); margin:32px 12px 8px; letter-spacing:.3px}
+    h1{color:var(--pink); margin:32px 12px 8px; letter-spacing:.3px}
+    p{margin:6px 12px 18px}
 
-p{margin:6px 12px 18px}
+    button{
+      padding:14px 22px;
+      border-radius:14px;
+      border:0;
+      font-weight:800;
+      cursor:pointer;
+      margin:8px;
+      transition:transform .15s ease, filter .15s ease;
+    }
+    button:hover{transform:translateY(-1px); filter:brightness(1.02)}
+    .yes{background:var(--pink);color:white; box-shadow:0 10px 20px rgba(255,79,139,.25)}
+    .no{background:#eee}
 
-button{
-  padding:14px 22px;
-  border-radius:14px;
-  border:0;
-  font-weight:800;
-  cursor:pointer;
-  margin:8px;
-  transition:transform .15s ease, filter .15s ease;
-}
-button:hover{transform:translateY(-1px); filter:brightness(1.02)}
-.yes{background:var(--pink);color:white; box-shadow:0 10px 20px rgba(255,79,139,.25)}
-.no{background:#eee}
+    .section{display:none; padding:20px; animation:fadeIn .25s ease}
+    @keyframes fadeIn{from{opacity:0; transform:translateY(6px)} to{opacity:1; transform:translateY(0)}}
 
-.section{display:none; padding:20px; animation:fadeIn .25s ease}
-@keyframes fadeIn{from{opacity:0; transform:translateY(6px)} to{opacity:1; transform:translateY(0)}}
+    .card{
+      background:white;
+      border-radius:20px;
+      padding:20px;
+      margin:15px auto;
+      width:min(760px,95%);
+      box-shadow:0 20px 40px rgba(0,0,0,.15);
+    }
 
-.card{
-  background:white;
-  border-radius:20px;
-  padding:20px;
-  margin:15px auto;
-  width:min(760px,95%);
-  box-shadow:0 20px 40px rgba(0,0,0,.15);
-}
+    /* Floating hearts */
+    .heart{
+      position:fixed;
+      width:16px;height:16px;
+      background:var(--pink);
+      transform:rotate(45deg);
+      animation:float 10s linear infinite;
+      opacity:.22;
+    }
+    .heart:before,.heart:after{
+      content:"";
+      position:absolute;
+      width:16px;height:16px;
+      border-radius:50%;
+      background:var(--pink);
+    }
+    .heart:before{left:-8px}
+    .heart:after{top:-8px}
+    @keyframes float{
+      from{transform:translateY(110vh) rotate(45deg)}
+      to{transform:translateY(-140vh) rotate(45deg)}
+    }
 
-/* Floating hearts */
-.heart{
-  position:fixed;
-  width:16px;height:16px;
-  background:var(--pink);
-  transform:rotate(45deg);
-  animation:float 10s linear infinite;
-  opacity:.22;
-}
-.heart:before,.heart:after{
-  content:"";
-  position:absolute;
-  width:16px;height:16px;
-  border-radius:50%;
-  background:var(--pink);
-}
-.heart:before{left:-8px}
-.heart:after{top:-8px}
-@keyframes float{
-  from{transform:translateY(110vh) rotate(45deg)}
-  to{transform:translateY(-140vh) rotate(45deg)}
-}
+    /* Confetti */
+    canvas{position:fixed;top:0;left:0;pointer-events:none}
 
-/* Confetti */
-canvas{position:fixed;top:0;left:0;pointer-events:none}
+    .giftsGrid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:12px;
+      width:min(760px,95%);
+      margin:0 auto;
+    }
+    .gift{
+      background:#fff0f6;
+      padding:14px;
+      border-radius:16px;
+      cursor:pointer;
+      box-shadow:0 10px 20px rgba(255,79,139,.12);
+      transition:transform .15s ease, box-shadow .15s ease;
+    }
+    .gift:hover{transform:translateY(-2px); box-shadow:0 16px 28px rgba(255,79,139,.18)}
 
-.giftsGrid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:12px;
-  width:min(760px,95%);
-  margin:0 auto;
-}
-.gift{
-  background:#fff0f6;
-  padding:14px;
-  border-radius:16px;
-  cursor:pointer;
-  box-shadow:0 10px 20px rgba(255,79,139,.12);
-  transition:transform .15s ease, box-shadow .15s ease;
-}
-.gift:hover{transform:translateY(-2px); box-shadow:0 16px 28px rgba(255,79,139,.18)}
+    /* YouTube embed */
+    .videoWrap{
+      width:min(760px,95%);
+      margin:0 auto;
+      aspect-ratio:16/9;
+      border-radius:18px;
+      overflow:hidden;
+      box-shadow:0 18px 36px rgba(0,0,0,.18);
+    }
+    .videoWrap iframe{width:100%; height:100%; border:0}
 
-/* YouTube embed */
-.videoWrap{
-  width:min(760px,95%);
-  margin:0 auto;
-  aspect-ratio:16/9;
-  border-radius:18px;
-  overflow:hidden;
-  box-shadow:0 18px 36px rgba(0,0,0,.18);
-}
-.videoWrap iframe{width:100%; height:100%; border:0}
-
-.small{font-size:.95rem; opacity:.85}
-
-</style>
+    .small{font-size:.95rem; opacity:.85}
+  </style>
 </head>
 
 <body>
+  <canvas id="confetti"></canvas>
 
-<canvas id="confetti"></canvas>
+  <h1>Hey Shivani &#x1F497;</h1>
+  <p>Open at your own risk &#x1F60C;</p>
 
-<h1>Hey Shivani 💗</h1>
-<p>Open at your own risk 😌</p>
-
-<div id="question">
-  <h2>Will you be my Valentine?</h2>
-  <button class="yes" id="yesBtn">YES OF COURSE</button>
-  <button class="no" id="noBtn">NO THANK YOU</button>
-</div>
-
-<div id="gifts" class="section">
-  <h2>Yay, you said yes! 🎉</h2>
-  <div class="giftsGrid">
-    <div class="gift" onclick="show('note')">Gift 1 — Love Note</div>
-    <div class="gift" onclick="show('letter')">Gift 2 — Words from my Heart</div>
-    <div class="gift" onclick="show('song')">Gift 3 — A Song for You</div>
-  </div>
-</div>
-
-<div id="note" class="section card">
-  <h3>💐 For Shivani</h3>
-  <p>I love you no matter what.</p>
-  <p>You are the best part of my life.</p>
-  <p>I can’t imagine my life without you.</p>
-  <p>— Premal</p>
-</div>
-
-<div id="letter" class="section card">
-  <h3>Words from my Heart</h3>
-  <p>You make my life so meaningful and I’m so lucky to have you.</p>
-  <p>I love you wholeheartedly and I can’t wait to love you forever.</p>
-  <p>You are literally the most beautiful person I know.</p>
-  <p>Always, forever — Premal</p>
-</div>
-
-<div id="song" class="section">
-  <h3>A Song for You 💘</h3>
-  <p class="small">Note: Most browsers only autoplay if the video is muted. If it doesn’t play automatically, tap the play button.</p>
-
-  <!-- Plays the YouTube video starting at 29 seconds -->
-  <div class="videoWrap">
-    <iframe
-      id="yt"
-      src="https://www.youtube.com/embed/CnEqrgMlWLQ?start=29&autoplay=1&mute=1&controls=1&rel=0"
-      title="A song for you"
-      allow="autoplay; encrypted-media; picture-in-picture"
-      allowfullscreen
-    ></iframe>
+  <div id="question">
+    <h2>Will you be my Valentine?</h2>
+    <button class="yes" id="yesBtn">YES OF COURSE</button>
+    <button class="no" id="noBtn">NO THANK YOU</button>
   </div>
 
-  <p style="margin-top:14px">
-    <a href="https://music.youtube.com/watch?v=CnEqrgMlWLQ&si=pp8bvPsDZM8V7Ac_" target="_blank">Open song in YouTube Music</a>
-  </p>
-</div>
+  <div id="gifts" class="section">
+    <h2>Yay, you said yes! &#x1F389;</h2>
+    <div class="giftsGrid">
+      <div class="gift" onclick="show('note')">Gift 1 — Love Note</div>
+      <div class="gift" onclick="show('letter')">Gift 2 — Words from my Heart</div>
+      <div class="gift" onclick="show('song')">Gift 3 — A Song for You</div>
+    </div>
+  </div>
 
-<script>
-// Floating hearts
-for(let i=0;i<26;i++){
-  const h=document.createElement("div");
-  h.className="heart";
-  const s=10+Math.random()*18;
-  h.style.width=s+"px";
-  h.style.height=s+"px";
-  h.style.left=Math.random()*100+"vw";
-  h.style.animationDuration=(6+Math.random()*6)+"s";
-  h.style.opacity=(.12+Math.random()*.18);
-  document.body.appendChild(h);
-}
+  <div id="note" class="section card">
+    <h3>&#x1F490; For Shivani</h3>
+    <p>I love you no matter what.</p>
+    <p>You are the best part of my life.</p>
+    <p>I can’t imagine my life without you.</p>
+    <p>— Premal</p>
+  </div>
 
-// No button runs away
-const noBtn=document.getElementById("noBtn");
-noBtn.onmouseover=()=>{
-  noBtn.style.position="relative";
-  noBtn.style.left=(Math.random()*240-120)+"px";
-  noBtn.style.top=(Math.random()*120-60)+"px";
-};
+  <div id="letter" class="section card">
+    <h3>Words from my Heart</h3>
+    <p>You make my life so meaningful and I’m so lucky to have you.</p>
+    <p>I love you wholeheartedly and I can’t wait to love you forever.</p>
+    <p>You are literally the most beautiful person I know.</p>
+    <p>Always, forever — Premal</p>
+  </div>
 
-// Yes button
-document.getElementById("yesBtn").onclick=()=>{
-  document.getElementById("question").style.display="none";
-  document.getElementById("gifts").style.display="block";
-  confettiBurst();
-};
+  <div id="song" class="section">
+    <h3>A Song for You &#x1F498;</h3>
+    <p class="small">Note: Most browsers only autoplay if the video is muted. If it doesn’t play automatically, tap the play button.</p>
 
-// Show sections
-function show(id){
-  document.querySelectorAll(".section").forEach(s=>s.style.display="none");
-  document.getElementById(id).style.display="block";
+    <!-- Tum Se Hi (starts at 29 seconds) -->
+    <div class="videoWrap">
+      <iframe
+        id="yt"
+        src="https://www.youtube.com/embed/mt9xg0mmt28?start=29&autoplay=1&mute=1&controls=1&rel=0"
+        title="Tum Se Hi"
+        allow="autoplay; encrypted-media; picture-in-picture"
+        allowfullscreen
+      ></iframe>
+    </div>
 
-  // If opening song section, force reload iframe to attempt autoplay again
-  if(id==="song"){
-    const yt=document.getElementById('yt');
-    const src=yt.getAttribute('src');
-    yt.setAttribute('src', src);
-  }
-}
+    <p style="margin-top:14px">
+      <a href="https://youtu.be/mt9xg0mmt28?t=29" target="_blank">Open song on YouTube</a>
+    </p>
+  </div>
 
-// Confetti
-const canvas=document.getElementById("confetti");
-const ctx=canvas.getContext("2d");
-canvas.width=innerWidth;
-canvas.height=innerHeight;
-addEventListener('resize',()=>{canvas.width=innerWidth; canvas.height=innerHeight;});
-let confetti=[];
-function confettiBurst(){
-  confetti=[];
-  for(let i=0;i<220;i++){
-    confetti.push({
-      x:Math.random()*canvas.width,
-      y:-20,
-      r:4,
-      vy: 1.5 + Math.random()*2.5,
-      vx: -1 + Math.random()*2,
-      color:`hsl(${Math.random()*360},100%,70%)`
-    });
-  }
-  requestAnimationFrame(drawConfetti);
-  // auto-stop after 2.5s
-  setTimeout(()=>{confetti=[];}, 2500);
-}
-function drawConfetti(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  confetti.forEach(c=>{
-    c.x+=c.vx;
-    c.y+=c.vy;
-    ctx.fillStyle=c.color;
-    ctx.fillRect(c.x,c.y,c.r,c.r);
-  });
-  if(confetti.length) requestAnimationFrame(drawConfetti);
-}
-</script>
+  <script>
+    // Floating hearts
+    for(let i=0;i<26;i++){
+      const h=document.createElement("div");
+      h.className="heart";
+      const s=10+Math.random()*18;
+      h.style.width=s+"px";
+      h.style.height=s+"px";
+      h.style.left=Math.random()*100+"vw";
+      h.style.animationDuration=(6+Math.random()*6)+"s";
+      h.style.opacity=(.12+Math.random()*.18);
+      document.body.appendChild(h);
+    }
 
+    // No button runs away + gets funnier on click
+    const noBtn=document.getElementById("noBtn");
+    const noTexts = [
+      "Nice try 60F",
+      "Absolutely not (jk) 979",
+      "Wrong answer 61C",
+      "Try again 92D",
+      "Shivani pls 97A",
+      "Ok but like... yes? 60A"
+    ];
+    let noIdx = 0;
+
+    noBtn.onmouseover=()=>{
+      noBtn.style.position="relative";
+      noBtn.style.left=(Math.random()*240-120)+"px";
+      noBtn.style.top=(Math.random()*120-60)+"px";
+    };
+
+    noBtn.onclick=()=>{
+      noBtn.textContent = noTexts[noIdx % noTexts.length];
+      noIdx++;
+      // also move it a bit on click
+      noBtn.style.position="relative";
+      noBtn.style.left=(Math.random()*240-120)+"px";
+      noBtn.style.top=(Math.random()*120-60)+"px";
+    };
+
+    // Yes button
+    document.getElementById("yesBtn").onclick=()=>{
+      document.getElementById("question").style.display="none";
+      document.getElementById("gifts").style.display="block";
+      confettiBurst();
+    };
+
+    // Show sections
+    function show(id){
+      document.querySelectorAll(".section").forEach(s=>s.style.display="none");
+      document.getElementById(id).style.display="block";
+
+      // If opening song section, force reload iframe to attempt autoplay again
+      if(id==="song"){
+        const yt=document.getElementById('yt');
+        const src=yt.getAttribute('src');
+        yt.setAttribute('src', src);
+      }
+    }
+
+    // Confetti
+    const canvas=document.getElementById("confetti");
+    const ctx=canvas.getContext("2d");
+    canvas.width=innerWidth;
+    canvas.height=innerHeight;
+    addEventListener('resize',()=>{canvas.width=innerWidth; canvas.height=innerHeight;});
+
+    let confetti=[];
+    function confettiBurst(){
+      confetti=[];
+      for(let i=0;i<220;i++){
+        confetti.push({
+          x:Math.random()*canvas.width,
+          y:-20,
+          r:4,
+          vy: 1.5 + Math.random()*2.5,
+          vx: -1 + Math.random()*2,
+          color:`hsl(${Math.random()*360},100%,70%)`
+        });
+      }
+      requestAnimationFrame(drawConfetti);
+      setTimeout(()=>{confetti=[];}, 2500);
+    }
+
+    function drawConfetti(){
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      confetti.forEach(c=>{
+        c.x+=c.vx;
+        c.y+=c.vy;
+        ctx.fillStyle=c.color;
+        ctx.fillRect(c.x,c.y,c.r,c.r);
+      });
+      if(confetti.length) requestAnimationFrame(drawConfetti);
+    }
+  </script>
 </body>
 </html>
